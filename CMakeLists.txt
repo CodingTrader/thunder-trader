@@ -31,6 +31,8 @@ SET(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib")
 
 message(STATUS "${BOOST_THREAD}")
 add_definitions(-DBOOST_SPIRIT_THREADSAFE)
+#If you has a custom boost install path, you should set BOOST_ROOT like
+#SET(BOOST_ROOT /usr/local/install/boost_1_61_0)
 find_package(Boost REQUIRED COMPONENTS filesystem regex system thread serialization date_time log log_setup)
 set(Boost_USE_STATIC_LIBS ON)
 set(Boost_USE_MULTITHREADED ON)
@@ -135,3 +137,7 @@ target_link_libraries(thunder-trader ${libs} ctp_future_mdplugin ctp_future_tdpl
 
 install (TARGETS thunder-trader DESTINATION bin)
 install (FILES thunder-trader.conf.default DESTINATION bin RENAME thunder-trader.conf)
+
+
+add_subdirectory("${PROJECT_SOURCE_DIR}/strategies/arbitrage_future")
+add_subdirectory("${PROJECT_SOURCE_DIR}/strategies/simple_strategy")

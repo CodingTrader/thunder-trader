@@ -18,7 +18,7 @@ Based on C++ 11, this project implements a quantitative trading system supportin
     - Support both linux and windows
     - C/S architecture
     - Client with graphical interface
-    - The real-time tracing of the variables in the policy can be realized by "probe" and the display mode of the data can be customized.
+    - The real-time tracing of the variables in the strategy can be supported by "probe", and the display mode of the "probe" can be customized.
     - Supporting the "intervention" of the strategy, by predefining some intervention actions, to achieve a fixed operation in the transaction process.
 
 - **Efficiency**
@@ -43,7 +43,7 @@ Welcome to my [personal blog](http://www.huyifeng.net/). There are detailed intr
 > * [Prepare](http://www.huyifeng.net/HFT-prepare.html)
 > * Strategy
 > 	*  [Strategy template](http://www.huyifeng.net/HFT-strategy.html)
-> 	*  [An arbitrage strategy implementation](http://www.huyifeng.net/HFT-arbitrage.html)
+> 	*  [An arbitrage strategy implementation](https://github.com/solopointer/thunder-trader/tree/master/strategies/arbitrage_future)
 > * Trade server 
 > * Monitor
 > * Research platform
@@ -54,7 +54,7 @@ This preject is tested in following environment:
 > * boost 1.58.0
 > * centos7
 
-Usage:
+Build:
 ```
 >cmake .
 >make
@@ -74,12 +74,30 @@ The reason of use a system_number will be illustrated in the document.
 
 Then you can use the [Monitor](http://www.huyifeng.net/HFT-monitor.html) to connect the thunder-trader.
 
+And if the cmake cannot find the boost, you should set the BOOST_ROOT to the custom boost install path.In the CMakeLists.txt,it should be like this: 
+
+```
+set(BOOST_ROOT /usr/local/install/boost/install/path)
+```
+
+For Monitor,you can either [download the binary .exe](http://www.huyifeng.net/download/monitor.tar.gz)  or compile by source.
+
+Compile steps: 
+* Open the [monitor.sln](https://github.com/solopointer/thunder-trader/blob/master/monitor/monitor.sln) using Microsoft visual stdio 2013 or above.
+* Open the property page of project, and switch to the VC++ directory, set the boost root to the correct install path of your boost. 
+* Build it.
+* Config [Monitor.json](https://github.com/solopointer/thunder-trader/blob/master/monitor/Monitor.json).
+* Put the Monitor.exe and [Monitor.json](https://github.com/solopointer/thunder-trader/blob/master/monitor/Monitor.json) and [PEGRP32E.DLL](https://github.com/solopointer/thunder-trader/blob/master/monitor/PEGRP32E.DLL) together in a directory.
+* Run Monitor.exe.
+
 ## Update log
 * 2018.11.20 : Support gcc 4.8.4
+* 2018.12.04 : Update arbitrage_strategy & simple_strategy
+* 2018.12.20 : Commit the Monitor v0.1
 
 ## Screenshots
 <p><b>Software running screenshots:</b><br>
-The Monitor(Coming soon):<br>
+The Monitor:<br>
 <img src='https://github.com/solopointer/thunder-trader/blob/master/assets/hft-monitor1.png' width=600><br><br>
 <img src='https://github.com/solopointer/thunder-trader/blob/master/assets/hft-monitor2.png' width=600><br><br>
 <img src='https://github.com/solopointer/thunder-trader/blob/master/assets/hft-monitor3.png' width=600><br><br>
@@ -94,6 +112,12 @@ The strategy research platform(Coming soon):<br>
 
 You are welcome to submit questions and bug reports as [Github Issues](https://github.com/solopointer/thunder-trader/issues).
 or mail to solopointer@qq.com
+
+Or
+
+QQ Group:628409183
+
+<img src='https://github.com/solopointer/thunder-trader/blob/master/assets/thunder-trader-group.jpeg' width=200><br><br>
 
 Particular attention:
 If you encounter an 
